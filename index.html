@@ -3,7 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrandMotion Studios — Cinematic Storytelling from Ghana</title>
+
+  <!-- ── PRIMARY SEO ── -->
+  <title>BrandMotion Studios | Cinematic Films — Accra, Ghana</title>
+  <meta name="description" content="BrandMotion Studios is a filmmaker-led creative studio based in Accra, Ghana. We craft cinematic wedding films, documentaries, fashion campaigns, and brand commercials for global audiences.">
+  <meta name="keywords" content="cinematography Ghana, wedding films Accra, documentary filmmaker Ghana, fashion campaign Ghana, brand commercial Accra, videography Ghana, BrandMotion Studios, Michael Amos filmmaker, cinematic storytelling Africa">
+  <meta name="author" content="BrandMotion Studios">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.brandmotionstudios.com">
+
+  <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ── -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.brandmotionstudios.com">
+  <meta property="og:title" content="BrandMotion Studios | Cinematic Films — Accra, Ghana">
+  <meta property="og:description" content="Filmmaker-led creative studio from Ghana. Wedding films, documentaries, fashion campaigns and brand commercials crafted to feel premium, human and unforgettable.">
+  <meta property="og:image" content="https://brandmotionstudios5496.b-cdn.net/og-image.jpg">
+  <meta property="og:site_name" content="BrandMotion Studios">
+  <meta property="og:locale" content="en_GH">
+
+  <!-- ── TWITTER CARD ── -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.brandmotionstudios.com">
+  <meta name="twitter:title" content="BrandMotion Studios | Cinematic Films — Accra, Ghana">
+  <meta name="twitter:description" content="Filmmaker-led creative studio from Ghana. Wedding films, documentaries, fashion campaigns and brand commercials crafted to feel premium, human and unforgettable.">
+  <meta name="twitter:image" content="https://brandmotionstudios5496.b-cdn.net/og-image.jpg">
+
+  <!-- ── STRUCTURED DATA ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "BrandMotion Studios",
+    "description": "Filmmaker-led creative studio based in Accra, Ghana specialising in wedding films, documentaries, fashion campaigns and brand commercials.",
+    "url": "https://www.brandmotionstudios.com",
+    "telephone": "+233541479680",
+    "email": "brandmotionstudios5496@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Accra",
+      "addressCountry": "GH"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Michael Amos"
+    },
+    "sameAs": [],
+    "areaServed": "Worldwide",
+    "serviceType": ["Wedding Films", "Documentaries", "Fashion Campaigns", "Brand Commercials", "Cinematography", "Post Production"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -890,6 +938,7 @@
 <footer>
   <span class="f-logo">BrandMotion Studios</span>
   <span class="f-copy">&copy; 2026. All rights reserved.</span>
+  <span class="f-copy">Developed by <a href="https://nexora-labs-red.vercel.app" target="_blank" style="color:var(--dim);text-decoration:none;border-bottom:1px solid var(--border);transition:color .28s,border-color .28s;" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='var(--dim)';this.style.borderColor='var(--border)'">Nexora Labs</a></span>
   <ul class="f-links">
     <li><a href="#portfolio">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -1051,6 +1100,18 @@
   setTimeout(() => injectVideo(slides[0]), 300);
   nextName.textContent = titles[1];
   timer = setInterval(() => goTo(idx+1), 9000);
+
+  /* force play on first user interaction */
+  const forcePlay = () => {
+    const vid = slides[0].querySelector('video');
+    if (vid) { vid.muted = true; vid.play().catch(()=>{}); }
+    document.removeEventListener('click', forcePlay);
+    document.removeEventListener('touchstart', forcePlay);
+    document.removeEventListener('scroll', forcePlay);
+  };
+  document.addEventListener('click', forcePlay);
+  document.addEventListener('touchstart', forcePlay);
+  document.addEventListener('scroll', forcePlay, {passive:true});
 
   /* ── form overlay ── */
   function openForm() {
