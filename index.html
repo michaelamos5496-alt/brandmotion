@@ -966,19 +966,25 @@
     if (mp4Url) {
       const vid = document.createElement('video');
       vid.className = 'slide-video';
-      vid.autoplay = true;
+      vid.setAttribute('autoplay', '');
+      vid.setAttribute('muted', '');
+      vid.setAttribute('loop', '');
+      vid.setAttribute('playsinline', '');
       vid.muted = true;
       vid.loop = true;
       vid.playsInline = true;
-      vid.setAttribute('playsinline', '');
       vid.style.cssText = 'position:absolute;top:50%;left:50%;width:max(100%,177.78vh);height:max(100%,56.25vw);transform:translate(-50%,-50%);object-fit:cover;pointer-events:none;z-index:1;filter:brightness(.45) saturate(.7);';
       const src = document.createElement('source');
       src.src = mp4Url;
       src.type = 'video/mp4';
       vid.appendChild(src);
       slide.insertBefore(vid, slide.querySelector('.slide-ov'));
-      vid.addEventListener('canplay', () => setTimeout(() => vid.classList.add('loaded'), 100));
       vid.load();
+      vid.play().catch(() => {});
+      vid.addEventListener('canplay', () => {
+        vid.classList.add('loaded');
+        vid.play().catch(() => {});
+      });
       return;
     }
 
@@ -1042,7 +1048,7 @@
   }, {passive:true});
 
   /* kick off first slide video + auto-advance */
-  injectVideo(slides[0]);
+  setTimeout(() => injectVideo(slides[0]), 300);
   nextName.textContent = titles[1];
   timer = setInterval(() => goTo(idx+1), 9000);
 
