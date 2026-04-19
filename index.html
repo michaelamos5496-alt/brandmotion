@@ -950,6 +950,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
+  /* ── force scroll to top on load ── */
+  window.addEventListener('load', () => window.scrollTo(0, 0));
+  if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+
   /* ── GSAP hero dolly-in (slow, continuous) ── */
   gsap.to('#heroBg', {
     scale: 1.18,
