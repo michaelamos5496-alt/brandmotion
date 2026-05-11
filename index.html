@@ -582,6 +582,7 @@
       transition: opacity .4s ease;
       overflow-y: auto;
       overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
     }
 
     #portfolioOverlay.open {
@@ -1227,7 +1228,8 @@
 
     /* ── Tablet ── */
     @media (max-width: 820px) {
-      body { overflow: auto; padding: 6px; }
+      html { overflow-y: auto; overflow-x: hidden; }
+      body { overflow: visible; padding: 6px; -webkit-overflow-scrolling: touch; }
       html, body { height: auto; }
 
       .dashboard {
@@ -1965,16 +1967,19 @@
     }
 
     let portfolioBuilt = false;
+    function lockScroll()   { document.body.style.overflow = 'hidden'; document.documentElement.style.overflowY = 'hidden'; }
+    function unlockScroll() { document.body.style.overflow = '';       document.documentElement.style.overflowY = ''; }
+
     function openPortfolio() {
       document.getElementById('portfolioOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
+      lockScroll();
       if (!portfolioBuilt) { buildPortfolio(); portfolioBuilt = true; }
       else if (nfHeroPlayer) { nfHeroPlayer.play().catch(() => { }); }
       animatePortfolioIn();
     }
     function closePortfolio() {
       document.getElementById('portfolioOverlay').classList.remove('open');
-      document.body.style.overflow = '';
+      unlockScroll();
       if (nfHeroPlayer) {
         nfHeroPlayer.setMuted(true).catch(() => {});
         nfHeroPlayer.setVolume(0).catch(() => {});
@@ -1991,12 +1996,12 @@
     /* ── ABOUT ── */
     function openAbout() {
       document.getElementById('aboutOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
+      lockScroll();
       animateAboutIn();
     }
     function closeAbout() {
       document.getElementById('aboutOverlay').classList.remove('open');
-      document.body.style.overflow = '';
+      unlockScroll();
     }
     document.getElementById('aboutOverlay').addEventListener('click', e => {
       if (e.target === document.getElementById('aboutOverlay')) closeAbout();
@@ -2005,12 +2010,12 @@
     /* ── FORM ── */
     function openForm() {
       document.getElementById('formOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
+      lockScroll();
       animateFormIn();
     }
     function closeForm() {
       document.getElementById('formOverlay').classList.remove('open');
-      document.body.style.overflow = '';
+      unlockScroll();
     }
     document.getElementById('formOverlay').addEventListener('click', e => {
       if (e.target === document.getElementById('formOverlay')) closeForm();
