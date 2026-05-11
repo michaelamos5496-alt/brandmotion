@@ -599,12 +599,14 @@
       gap: 6px;
       padding: 0 4%;
       height: 54px;
+      overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
       background: rgba(15, 15, 15, .82);
       backdrop-filter: blur(24px) saturate(1.4);
       -webkit-backdrop-filter: blur(24px) saturate(1.4);
       border-bottom: 1px solid rgba(255, 255, 255, .05);
       flex-shrink: 0;
     }
+    .atv-nav::-webkit-scrollbar { display: none; }
 
     .atv-nav-tab {
       font-size: 9px;
@@ -617,6 +619,9 @@
       border-radius: 100px;
       padding: 7px 16px;
       cursor: none;
+      flex-shrink: 0;
+      white-space: nowrap;
+      min-height: 36px;
       transition: color .2s, background .2s, border-color .2s;
     }
 
@@ -1209,102 +1214,103 @@
     /* ══════════════════════════════
        RESPONSIVE
     ══════════════════════════════ */
-    @media (max-width: 1000px) {
-      .dashboard {
-        grid-template-columns: 180px 1fr 230px;
-      }
+    /* ── Touch: hide custom cursor ── */
+    @media (hover: none) and (pointer: coarse) {
+      #cur, #ring { display: none; }
+      body { cursor: auto; }
+      a, button, [onclick] { cursor: pointer; }
     }
 
-    @media (max-width: 820px) {
-      body {
-        overflow: auto;
-      }
+    @media (max-width: 1000px) {
+      .dashboard { grid-template-columns: 180px 1fr 230px; }
+    }
 
-      html,
-      body {
-        height: auto;
-      }
+    /* ── Tablet ── */
+    @media (max-width: 820px) {
+      body { overflow: auto; padding: 6px; }
+      html, body { height: auto; }
 
       .dashboard {
-        height: auto;
-        min-height: 100svh;
+        height: auto; min-height: 100svh;
         grid-template-columns: 1fr;
         grid-template-rows: auto;
+        gap: 6px;
       }
+      .col-left { display: none; }
+      .col-center { height: 72svh; }
+      .card-main { height: 100%; }
 
-      .col-left {
-        display: none;
-      }
+      .main-content { padding: 16px 20px; }
+      .main-nav-pills { gap: 5px; }
+      .nav-pill { padding: 10px 14px; font-size: 8.5px; }
+      .main-headline { font-size: clamp(40px, 8vw, 68px); }
 
-      .col-center {
-        height: 70svh;
-      }
+      .col-right { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+      .card-work  { min-height: 260px; flex: 1 1 100%; }
+      .stats-row  { flex: 1 1 100%; gap: 6px; }
+      .card-cta   { flex: 1 1 100%; height: 76px; }
 
-      .card-main {
-        height: 100%;
-      }
+      /* Portfolio overlay */
+      .atv-nav { padding: 0 16px; gap: 4px; overflow-x: auto; }
+      .atv-nav-tab { padding: 6px 12px; white-space: nowrap; flex-shrink: 0; }
+      .nf-hero { height: 58vw; min-height: 300px; }
+      .nf-hero-content { bottom: 18%; left: 5%; max-width: 80%; }
+      .nf-hero-title { font-size: clamp(26px, 4.5vw, 52px); }
+      .nf-rows { padding: 0 16px 80px; margin-top: -50px; }
+      .nf-row  { margin-bottom: 28px; }
+      .nf-track { gap: 8px; }
+      .nf-card { flex: 0 0 calc(33.33% - 6px); }
 
-      .col-right {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-
-      .card-work {
-        min-height: 200px;
-        flex: 1 1 100%;
-      }
-
-      .stats-row {
-        flex: 1 1 100%;
-      }
-
-      .card-cta {
-        flex: 1 1 100%;
-      }
-
-      .nf-card {
-        flex: 0 0 calc(33.33% - 7px);
-      }
-
-      .nf-hero-content {
-        bottom: 20%;
-      }
+      /* About panel */
+      .about-services { grid-template-columns: 1fr; }
+      #aboutPanel, #formPanel { padding: 28px 24px 48px; border-radius: 20px 20px 0 0; }
     }
 
+    /* ── Phone ── */
     @media (max-width: 540px) {
-      .main-ig {
-        display: none;
-      }
+      body { padding: 4px; }
 
-      .main-headline {
-        font-size: clamp(36px, 11vw, 58px);
-      }
+      .col-center { height: 78svh; }
+      .main-content { padding: 14px 16px; }
+      .main-nav-pills { overflow-x: auto; padding-bottom: 2px; -ms-overflow-style:none; scrollbar-width:none; }
+      .main-nav-pills::-webkit-scrollbar { display: none; }
+      .nav-pill { flex-shrink: 0; padding: 10px 13px; font-size: 8px; }
+      .main-ig { display: none; }
+      .main-headline { font-size: clamp(34px, 10.5vw, 52px); }
+      .main-cta-btn { padding: 12px 20px; font-size: 8.5px; }
+      .latest-badge { display: none; }
 
-      #formPanel {
-        padding: 28px 20px 48px;
-      }
+      .card-work { min-height: 240px; }
+      .work-vtext { font-size: clamp(44px, 8vh, 72px); right: 8px; }
+      .card-stat { height: 72px; }
+      .stat-n { font-size: 30px; }
+      .card-cta { height: 70px; padding: 0 18px; }
+      .cta-label-main { font-size: 18px; }
 
-      .form-row {
-        grid-template-columns: 1fr;
-      }
+      /* Portfolio overlay */
+      .nf-hero { height: 68vw; min-height: 260px; }
+      .nf-hero-content { bottom: 14%; left: 5%; max-width: 90%; }
+      .nf-hero-title { font-size: clamp(22px, 6vw, 38px); }
+      .nf-hero-desc { display: none; }
+      .nf-hero-btns { gap: 8px; }
+      .nf-btn-watch, .nf-btn-info { padding: 11px 18px; font-size: 8px; }
+      .nf-rows { padding: 0 12px 80px; }
+      .nf-track { gap: 6px; }
+      .nf-card { flex: 0 0 calc(50% - 3px); }
+      .nf-card-label { padding: 7px 1px 0; }
+      .nf-card-name { font-size: 12px; }
+      .atv-nav { height: 48px; padding: 0 12px; }
 
-      .nf-card {
-        flex: 0 0 calc(50% - 5px);
-      }
-
-      .nf-hero {
-        min-height: 280px;
-        height: 70vw;
-      }
-
-      .nf-hero-content {
-        bottom: 16%;
-        left: 5%;
-      }
-
-      .nf-hero-desc {
-        display: none;
-      }
+      /* Form & About panels */
+      #formPanel, #aboutPanel { padding: 24px 16px 44px; border-radius: 18px 18px 0 0; }
+      .form-row { grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
+      .about-services { grid-template-columns: 1fr; gap: 8px; margin-bottom: 20px; }
+      .about-stats { flex-wrap: nowrap; }
+      .about-stat { padding: 14px 10px; }
+      .about-stat-n { font-size: 26px; }
+      .about-mission { font-size: clamp(18px, 5vw, 26px); margin-bottom: 20px; }
+      .about-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .about-footer .form-submit { width: 100%; justify-content: center; }
     }
   </style>
 
@@ -1665,6 +1671,7 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
     /* ── WORK CARD SLIDESHOW ── */
@@ -1713,6 +1720,80 @@
     });
 
 
+    /* ── GSAP ANIMATIONS ── */
+    gsap.set(['.card-logo','.card-photo','.card-about','.card-main','.card-work','.card-stat','.card-cta'], { opacity: 0 });
+    gsap.set(['.nav-pill','.main-tag-pill','.main-headline','.main-cta-row','.latest-badge'], { opacity: 0 });
+
+    const introTl = gsap.timeline({ delay: 0.15, defaults: { ease: 'power3.out' } });
+
+    /* Dashboard cards */
+    introTl
+      .to('.card-main',  { opacity: 1, scale: 1,    duration: 0.9, ease: 'power2.out', clearProps: 'transform' }, 0)
+      .from('.card-main',{ scale: 0.975, duration: 0.9, ease: 'power2.out' }, 0)
+      .to('.card-logo',  { opacity: 1, x: 0,        duration: 0.6 }, 0.1)
+      .from('.card-logo',{ x: -24,                  duration: 0.6 }, 0.1)
+      .to('.card-photo', { opacity: 1, y: 0,        duration: 0.7 }, 0.18)
+      .from('.card-photo',{ y: -18,                 duration: 0.7 }, 0.18)
+      .to('.card-about', { opacity: 1, y: 0,        duration: 0.6 }, 0.26)
+      .from('.card-about',{ y: 18,                  duration: 0.6 }, 0.26)
+      .to('.card-work',  { opacity: 1, x: 0,        duration: 0.7 }, 0.22)
+      .from('.card-work',{ x: 28,                   duration: 0.7 }, 0.22)
+      .to('.card-stat',  { opacity: 1, x: 0,        duration: 0.5, stagger: 0.08 }, 0.32)
+      .from('.card-stat',{ x: 24,                   duration: 0.5, stagger: 0.08 }, 0.32)
+      .to('.card-cta',   { opacity: 1, y: 0,        duration: 0.5 }, 0.45)
+      .from('.card-cta', { y: 14,                   duration: 0.5 }, 0.45);
+
+    /* Center card content */
+    introTl
+      .to('.nav-pill',      { opacity: 1, y: 0, stagger: 0.07, duration: 0.45 }, 0.5)
+      .from('.nav-pill',    { y: -12,           stagger: 0.07, duration: 0.45 }, 0.5)
+      .to('.main-tag-pill', { opacity: 1, y: 0, stagger: 0.06, duration: 0.4  }, 0.65)
+      .from('.main-tag-pill',{ y: 10,           stagger: 0.06, duration: 0.4  }, 0.65)
+      .to('.main-headline', { opacity: 1, y: 0, duration: 0.7 }, 0.78)
+      .from('.main-headline',{ y: 22,           duration: 0.7 }, 0.78)
+      .to('.main-cta-row',  { opacity: 1, y: 0, duration: 0.5 }, 0.92)
+      .from('.main-cta-row',{ y: 12,            duration: 0.5 }, 0.92)
+      .to('.latest-badge',  { opacity: 1,        duration: 0.5 }, 1.05);
+
+    /* Stat number count-up */
+    introTl.add(() => {
+      document.querySelectorAll('.stat-n').forEach(el => {
+        const target = parseInt(el.textContent);
+        if (isNaN(target)) return;
+        const sup = el.querySelector('sup') ? el.querySelector('sup').outerHTML : '';
+        gsap.fromTo(el, { innerText: 0 }, {
+          innerText: target, duration: 1.4, ease: 'power2.out', snap: { innerText: 1 },
+          onUpdate() { el.innerHTML = Math.round(this.targets()[0].innerText) + sup; }
+        });
+      });
+    }, 0.9);
+
+    /* Portfolio overlay open */
+    function animatePortfolioIn() {
+      gsap.fromTo('.nf-hero-badge, .nf-hero-year',
+        { opacity: 0, y: 14 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, ease: 'power3.out', delay: 0.2 });
+      gsap.fromTo('#nfHeroTitle',
+        { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out', delay: 0.3 });
+      gsap.fromTo('#nfHeroDesc',
+        { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 0.42 });
+      gsap.fromTo('.nf-btn-watch, .nf-btn-info',
+        { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.45, ease: 'power2.out', delay: 0.52 });
+      gsap.fromTo('.nf-row',
+        { opacity: 0, y: 28 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.55, ease: 'power2.out', delay: 0.38 });
+    }
+
+    /* About overlay open */
+    function animateAboutIn() {
+      gsap.fromTo('#aboutPanel > *',
+        { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.09, duration: 0.55, ease: 'power3.out', delay: 0.15 });
+    }
+
+    /* Form overlay open */
+    function animateFormIn() {
+      gsap.fromTo('#formPanel > *',
+        { opacity: 0, y: 16 }, { opacity: 1, y: 0, stagger: 0.07, duration: 0.5, ease: 'power3.out', delay: 0.2 });
+    }
+
     /* ── PORTFOLIO (NETFLIX STYLE) ── */
     const nfProjects = [
       { id: '1191160090', title: 'Cinematic Pottery\nProduction', tag: 'E-Commerce', year: '2025', desc: 'Product storytelling for Sunstories — handmade ceramics brought to life through cinematic craft.', url: 'https://vimeo.com/1191160090', rows: ['all', 'brand'], featured: true },
@@ -1721,6 +1802,8 @@
       { id: '1164505617', title: 'Anniversary\nCelebration', tag: 'Event Film', year: '2024', desc: 'A celebratory film with intimacy, energy, and a polished emotional finish.', url: 'https://vimeo.com/1164505617', rows: ['all', 'brand'] },
       { id: '1091937617', title: 'HERE WE ARE\n× FORM Ghana', tag: 'Post Production', year: '2024', desc: 'Post-production leadership on a purpose-led climate story with global relevance.', url: 'https://vimeo.com/1091937617', rows: ['all', 'docs'] },
       { id: '834062800', title: 'United Airlines\nBeacon', tag: 'Documentary', year: '2023', desc: 'Impact storytelling built around dignity, human detail, and visual honesty.', url: 'https://vimeo.com/834062800', rows: ['all', 'docs'] },
+      { thumb: 'https://lh3.googleusercontent.com/d/1iFEFrKrhPyqtrXIQVhbCqoZdQXFx7jv4', title: 'Visual Editorial\nSeries', tag: 'Photography', year: '2025', desc: 'Editorial photography series — a study in composition, mood, and visual storytelling through the still image.', rows: ['all', 'fashion'], imageOnly: true },
+      { thumb: 'https://lh3.googleusercontent.com/d/1F8AYRI9EJGdhhX6XzjrW98UTlZ_yoHrK', title: 'Creative Direction\nVisuals', tag: 'Creative Direction', year: '2025', desc: 'Creative direction and production design — translating brand concepts into vivid, intentional visual worlds.', rows: ['all', 'brand'], imageOnly: true },
     ];
     const nfRowDefs = [
       { id: 'all', label: 'All Work' },
@@ -1730,6 +1813,7 @@
     ];
 
     function nfThumb(id) { return `https://vumbnail.com/${id}.jpg`; }
+    function getThumb(p) { return p.thumb || nfThumb(p.id); }
 
     let nfHeroPlayer = null;
     let nfCurrent    = null;
@@ -1754,13 +1838,19 @@
 
     function setHeroContent(proj) {
       nfCurrent = proj;
-      document.getElementById('nfHeroBg').style.backgroundImage = `url(${nfThumb(proj.id)})`;
+      document.getElementById('nfHeroBg').style.backgroundImage = `url(${getThumb(proj)})`;
       document.getElementById('nfHeroTag').textContent  = proj.tag;
       document.getElementById('nfHeroYear').textContent = proj.year;
       document.getElementById('nfHeroTitle').innerHTML  = proj.title.replace(/\n/g, '<br>');
       document.getElementById('nfHeroDesc').textContent = proj.desc;
-      document.getElementById('nfBtnWatch').onclick = toggleHeroSound;
-      document.getElementById('nfBtnInfo').onclick  = () => window.open(proj.url, '_blank');
+      const watchBtn = document.getElementById('nfBtnWatch');
+      if (proj.imageOnly) {
+        watchBtn.style.display = 'none';
+      } else {
+        watchBtn.style.display = '';
+        watchBtn.onclick = toggleHeroSound;
+      }
+      document.getElementById('nfBtnInfo').onclick  = () => proj.url && window.open(proj.url, '_blank');
       heroMuted = true;
       syncWatchBtn();
     }
@@ -1799,7 +1889,14 @@
 
     function selectProject(proj) {
       setHeroContent(proj);
-      loadHeroVideo(proj);
+      if (proj.imageOnly) {
+        if (nfHeroPlayer) { nfHeroPlayer.destroy().catch(() => {}); nfHeroPlayer = null; }
+        const heroBg = document.getElementById('nfHeroBg');
+        const existing = heroBg.querySelector('iframe');
+        if (existing) existing.remove();
+      } else {
+        loadHeroVideo(proj);
+      }
       document.getElementById('portfolioOverlay').scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1808,7 +1905,7 @@
       card.className = 'nf-card';
       card.innerHTML = `
       <div class="nf-card-inner">
-        <div class="nf-card-thumb" style="background-image:url(${nfThumb(p.id)})"></div>
+        <div class="nf-card-thumb" style="background-image:url(${getThumb(p)})"></div>
         <div class="nf-card-overlay">
           <div class="nf-card-play"><svg viewBox="0 0 16 16"><polygon points="3,1 15,8 3,15"/></svg></div>
         </div>
@@ -1873,6 +1970,7 @@
       document.body.style.overflow = 'hidden';
       if (!portfolioBuilt) { buildPortfolio(); portfolioBuilt = true; }
       else if (nfHeroPlayer) { nfHeroPlayer.play().catch(() => { }); }
+      animatePortfolioIn();
     }
     function closePortfolio() {
       document.getElementById('portfolioOverlay').classList.remove('open');
@@ -1894,6 +1992,7 @@
     function openAbout() {
       document.getElementById('aboutOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
+      animateAboutIn();
     }
     function closeAbout() {
       document.getElementById('aboutOverlay').classList.remove('open');
@@ -1907,6 +2006,7 @@
     function openForm() {
       document.getElementById('formOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
+      animateFormIn();
     }
     function closeForm() {
       document.getElementById('formOverlay').classList.remove('open');
@@ -1921,29 +2021,67 @@
       document.getElementById('dialCode').textContent = sel.value.replace('-CA', '');
     }
 
-    function submitForm(e) {
+    async function submitForm(e) {
       e.preventDefault();
-      const btn = document.getElementById('formBtn');
+      const btn     = document.getElementById('formBtn');
       const btnText = document.getElementById('formBtnText');
-      const msg = document.getElementById('formMsg');
-      const data = new FormData(document.getElementById('intakeForm'));
-      btnText.textContent = 'Sending…'; btn.style.opacity = '.6'; btn.disabled = true;
-      const name = data.get('name'), email = data.get('email');
+      const msg     = document.getElementById('formMsg');
+      const form    = document.getElementById('intakeForm');
+      const data    = new FormData(form);
+
+      btnText.textContent = 'Sending…';
+      btn.style.opacity = '.6';
+      btn.disabled = true;
+      msg.style.display = 'none';
+
+      const name     = data.get('name');
+      const email    = data.get('email');
       const dialCode = document.getElementById('dialCode').textContent;
-      const phone = data.get('phone') ? `${dialCode} ${data.get('phone')}` : 'Not provided';
-      const country = document.getElementById('countrySelect').options[document.getElementById('countrySelect').selectedIndex].text;
-      const type = data.get('type'), budget = data.get('budget') || 'Not specified', timeline = data.get('timeline') || 'Not specified', brief = data.get('brief');
-      const subject = encodeURIComponent(`New Project Inquiry — ${type} from ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone / WhatsApp: ${phone}\nCountry: ${country}\n\nProject Type: ${type}\nBudget: ${budget}\nTimeline: ${timeline}\n\nBrief:\n${brief}`);
-      window.location.href = `mailto:brandmotionstudios5496@gmail.com?subject=${subject}&body=${body}`;
-      setTimeout(() => {
+      const phone    = data.get('phone') ? `${dialCode} ${data.get('phone')}` : 'Not provided';
+      const country  = document.getElementById('countrySelect').options[document.getElementById('countrySelect').selectedIndex].text;
+      const type     = data.get('type');
+      const budget   = data.get('budget')   || 'Not specified';
+      const timeline = data.get('timeline') || 'Not specified';
+      const brief    = data.get('brief');
+
+      const message =
+        `Name: ${name}\nEmail: ${email}\nPhone / WhatsApp: ${phone}\nCountry: ${country}\n\n` +
+        `Project Type: ${type}\nBudget: ${budget}\nTimeline: ${timeline}\n\nBrief:\n${brief}`;
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: 'YOUR_WEB3FORMS_ACCESS_KEY',
+            subject: `New Project Inquiry — ${type} from ${name}`,
+            from_name: name,
+            replyto: email,
+            message
+          })
+        });
+        const result = await res.json();
+        if (result.success) {
+          msg.style.display = 'block';
+          msg.style.color = 'var(--accent)';
+          msg.textContent = '✓ Brief received. We\'ll be in touch shortly.';
+          form.reset();
+          document.getElementById('dialCode').textContent = '+233';
+          gsap.from(msg, { opacity: 0, y: 8, duration: 0.4 });
+        } else {
+          throw new Error(result.message || 'Submission failed');
+        }
+      } catch {
         msg.style.display = 'block';
-        msg.textContent = "✓ Your email client should have opened. We'll be in touch shortly.";
-        btnText.textContent = 'Send Brief'; btn.style.opacity = '1'; btn.disabled = false;
-      }, 800);
+        msg.style.color = '#e07070';
+        msg.textContent = '✗ Something went wrong — please email us directly at brandmotionstudios5496@gmail.com';
+        gsap.from(msg, { opacity: 0, y: 8, duration: 0.4 });
+      } finally {
+        btnText.textContent = 'Send Brief';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      }
     }
   </script>
 </body>
-
 </html>
-s
