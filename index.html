@@ -576,7 +576,9 @@
       position: fixed;
       inset: 0;
       z-index: 500;
-      background: #0f0f0f;
+      background: rgba(6, 6, 9, 0.78);
+      backdrop-filter: blur(36px) saturate(1.35) brightness(0.9);
+      -webkit-backdrop-filter: blur(36px) saturate(1.35) brightness(0.9);
       opacity: 0;
       pointer-events: none;
       transition: opacity .4s ease;
@@ -601,10 +603,10 @@
       padding: 0 4%;
       height: 54px;
       overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none;
-      background: rgba(15, 15, 15, .82);
-      backdrop-filter: blur(24px) saturate(1.4);
-      -webkit-backdrop-filter: blur(24px) saturate(1.4);
-      border-bottom: 1px solid rgba(255, 255, 255, .05);
+      background: rgba(6, 6, 9, 0.55);
+      backdrop-filter: blur(28px) saturate(1.5);
+      -webkit-backdrop-filter: blur(28px) saturate(1.5);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
       flex-shrink: 0;
     }
     .atv-nav::-webkit-scrollbar { display: none; }
@@ -679,8 +681,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(80deg, rgba(15, 15, 15, .88) 0%, rgba(15, 15, 15, .4) 50%, rgba(15, 15, 15, .1) 75%),
-        linear-gradient(to top, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, .2) 22%, transparent 40%);
+        linear-gradient(80deg, rgba(6, 6, 9, .82) 0%, rgba(6, 6, 9, .32) 50%, transparent 75%),
+        linear-gradient(to top, rgba(6, 6, 9, .92) 0%, rgba(6, 6, 9, .18) 28%, transparent 48%);
     }
 
     .nf-hero-content {
@@ -788,6 +790,7 @@
       z-index: 10;
       margin-top: -60px;
       padding: 0 4% 100px;
+      background: linear-gradient(to bottom, transparent 0%, rgba(6, 6, 9, 0.45) 120px, rgba(6, 6, 9, 0.45));
     }
 
     .nf-row {
