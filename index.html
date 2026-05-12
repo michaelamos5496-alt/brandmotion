@@ -2041,11 +2041,6 @@
       const form    = document.getElementById('intakeForm');
       const data    = new FormData(form);
 
-      btnText.textContent = 'Sending…';
-      btn.style.opacity = '.6';
-      btn.disabled = true;
-      msg.style.display = 'none';
-
       const name     = data.get('name');
       const email    = data.get('email');
       const dialCode = document.getElementById('dialCode').textContent;
@@ -2056,8 +2051,13 @@
       const timeline = data.get('timeline') || 'Not specified';
       const brief    = data.get('brief');
 
-      const message =
-        `Name: ${name}\nEmail: ${email}\nPhone / WhatsApp: ${phone}\nCountry: ${country}\n\n` +
+      btnText.textContent = 'Sending…';
+      btn.style.opacity = '.6';
+      btn.disabled = true;
+      msg.style.display = 'none';
+
+      const emailMessage =
+        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCountry: ${country}\n\n` +
         `Project Type: ${type}\nBudget: ${budget}\nTimeline: ${timeline}\n\nBrief:\n${brief}`;
 
       try {
@@ -2065,28 +2065,28 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
-            access_key: 'YOUR_WEB3FORMS_ACCESS_KEY',
+            access_key: 'c8a1aa40-db22-44be-82e4-060f9aac402c',
             subject: `New Project Inquiry — ${type} from ${name}`,
             from_name: name,
             replyto: email,
-            message
+            message: emailMessage
           })
         });
         const result = await res.json();
         if (result.success) {
           msg.style.display = 'block';
           msg.style.color = 'var(--accent)';
-          msg.textContent = '✓ Brief received. We\'ll be in touch shortly.';
+          msg.textContent = '✓ Brief sent. We\'ll be in touch with you shortly.';
           form.reset();
           document.getElementById('dialCode').textContent = '+233';
           gsap.from(msg, { opacity: 0, y: 8, duration: 0.4 });
         } else {
-          throw new Error(result.message || 'Submission failed');
+          throw new Error('Submission failed');
         }
       } catch {
         msg.style.display = 'block';
         msg.style.color = '#e07070';
-        msg.textContent = '✗ Something went wrong — please email us directly at brandmotionstudios5496@gmail.com';
+        msg.textContent = '✗ Something went wrong — email us at brandmotionstudios5496@gmail.com';
         gsap.from(msg, { opacity: 0, y: 8, duration: 0.4 });
       } finally {
         btnText.textContent = 'Send Brief';
