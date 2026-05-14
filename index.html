@@ -1020,6 +1020,43 @@
       color: rgba(237, 232, 223, .45);
     }
 
+    .about-copy {
+      margin-bottom: 32px;
+    }
+
+    .about-copy .about-mission {
+      margin-bottom: 20px;
+    }
+
+    .about-body-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(14px, 1.1vw, 16px);
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(237, 232, 223, .62);
+      margin-bottom: 14px;
+    }
+
+    .about-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: -.01em;
+      color: rgba(237, 232, 223, .55);
+      margin-top: 22px;
+      margin-bottom: 0;
+    }
+
+    .services-intro {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(13px, 1vw, 15px);
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(237, 232, 223, .5);
+      margin-bottom: 24px;
+    }
+
     .about-services {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1135,6 +1172,15 @@
       font-size: 22px;
       font-weight: 300;
       color: var(--text);
+    }
+
+    .form-intro {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(13px, 1vw, 15px);
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(237, 232, 223, .5);
+      margin-bottom: 24px;
     }
 
     .fov-close {
@@ -1332,6 +1378,68 @@
       .about-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
       .about-footer .form-submit { width: 100%; justify-content: center; }
     }
+
+    /* Credentials strip */
+    .creds-strip {
+      width: 100%;
+      padding: 18px 0;
+      border-top: 1px solid rgba(237, 232, 223, .08);
+      border-bottom: 1px solid rgba(237, 232, 223, .08);
+      overflow: hidden;
+    }
+    .creds-track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0 18px;
+      padding: 0 24px;
+    }
+    .cred-item {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 223, .45);
+      white-space: nowrap;
+    }
+    .cred-dot {
+      font-size: 14px;
+      color: rgba(237, 232, 223, .2);
+      line-height: 1;
+    }
+    .cred-note {
+      font-weight: 400;
+      letter-spacing: .04em;
+      text-transform: none;
+      font-size: .9em;
+      color: rgba(237, 232, 223, .28);
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 36px 24px 40px;
+    }
+
+    .footer-primary {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(14px, 1.2vw, 17px);
+      font-weight: 300;
+      letter-spacing: .01em;
+      color: rgba(237, 232, 223, .55);
+      margin-bottom: 6px;
+    }
+
+    .footer-secondary {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(237, 232, 223, .25);
+    }
   </style>
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -1440,7 +1548,7 @@
       <!-- Start a Project CTA -->
       <a href="javascript:void(0)" onclick="openForm()" class="card card-cta">
         <div>
-          <div class="cta-label-top">Ready to create?</div>
+          <div class="cta-label-top">Ready to make something?</div>
           <div class="cta-label-main">Start a Project</div>
         </div>
         <div class="cta-arrow">&rarr;</div>
@@ -1448,6 +1556,23 @@
     </div>
 
   </div><!-- /dashboard -->
+
+  <!-- CREDENTIALS STRIP -->
+  <div class="creds-strip">
+    <div class="creds-track">
+      <span class="cred-item">Vogue</span>
+      <span class="cred-dot">·</span>
+      <span class="cred-item">United Airlines</span>
+      <span class="cred-dot">·</span>
+      <span class="cred-item">Michaela Coel</span>
+      <span class="cred-dot">·</span>
+      <span class="cred-item">Adjoa Andoh <span class="cred-note">(Bridgerton)</span></span>
+      <span class="cred-dot">·</span>
+      <span class="cred-item">Debonair Afrik</span>
+      <span class="cred-dot">·</span>
+      <span class="cred-item">African Oil Week</span>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════
      PORTFOLIO OVERLAY (NETFLIX STYLE)
@@ -1510,8 +1635,15 @@
         </button>
       </div>
 
-      <p class="about-mission">Director-led visual storytelling — crafting films that <em>move people</em> and build
-        brands, from Accra, Ghana, for a global audience.</p>
+      <div class="about-copy">
+        <p class="about-mission">We started BrandMotion Studios with a single conviction: that African stories, told honestly and shot beautifully, belong in front of the world.</p>
+        <p class="about-body-copy">Six years later, that conviction has taken us to Vogue editorials, United Airlines documentaries, fashion campaigns with internationally recognised designers, and development films with talent from the biggest shows on Netflix. We've worked across Ghana, West Africa, and three continents — bringing the same eye to every frame.</p>
+        <p class="about-body-copy">We are a director-led studio. That means every project we take on is treated as a film — not a deliverable. The brief matters. The story matters. The feeling it leaves behind matters most of all.</p>
+        <p class="about-body-copy">Our base is Accra. Our reach is everywhere.</p>
+        <p class="about-tagline">Africa, in full frame.</p>
+      </div>
+
+      <p class="services-intro">We work across four disciplines. Each one is director-led, creatively intentional, and built to international standard. Whether you come to us with a brief or a blank page, we treat every project the same way — as a film worth making.</p>
 
       <div class="about-services">
         <div class="about-service">
@@ -1581,6 +1713,8 @@
           </svg>
         </button>
       </div>
+
+      <p class="form-intro">Whether you're a brand, a publication, an NGO, or a production company looking for a Ghana-based DOP — the conversation starts here.</p>
 
       <form id="intakeForm" onsubmit="submitForm(event)">
         <div class="form-row">
@@ -1691,6 +1825,12 @@
       </form>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-primary">BrandMotion Studios &nbsp;&middot;&nbsp; Africa, in full frame.</p>
+    <p class="footer-secondary">Accra, Ghana &nbsp;&middot;&nbsp; Available worldwide</p>
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
@@ -1887,18 +2027,26 @@
       const heroBg = document.getElementById('nfHeroBg');
       const init = () => {
         /* No background:true — keeps silent autoplay but allows setVolume() after user gesture */
-        nfHeroPlayer = new Vimeo.Player(heroBg, {
+        const player = new Vimeo.Player(heroBg, {
           id: parseInt(proj.id, 10),
           autoplay: true, muted: true, loop: true,
           autopause: false, responsive: false,
           title: false, byline: false, portrait: false
         });
-        nfHeroPlayer.ready().then(() => {
-          applyIframeStyle();
-          nfHeroPlayer.setMuted(true).catch(() => {});
-          nfHeroPlayer.setVolume(0).catch(() => {});
-          nfHeroPlayer.play().catch(() => {});
+        nfHeroPlayer = player;
+        player.on('error', () => {
+          if (nfHeroPlayer === player) nfHeroPlayer = null;
+          player.destroy().catch(() => {});
+          const fr = heroBg.querySelector('iframe');
+          if (fr) fr.remove();
         });
+        player.ready().then(() => {
+          if (nfHeroPlayer !== player) return;
+          applyIframeStyle();
+          player.setMuted(true).catch(() => {});
+          player.setVolume(0).catch(() => {});
+          player.play().catch(() => {});
+        }).catch(() => {});
       };
       if (nfHeroPlayer) {
         nfHeroPlayer.destroy().then(init).catch(init);
