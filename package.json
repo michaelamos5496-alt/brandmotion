@@ -1,0 +1,23 @@
+{
+  "name": "brandmotion",
+  "version": "1.0.0",
+  "description": "BrandMotion Studios website",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelamos5496-alt/brandmotion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelamos5496-alt/brandmotion/issues"
+  },
+  "homepage": "https://github.com/michaelamos5496-alt/brandmotion#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
