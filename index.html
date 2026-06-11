@@ -265,6 +265,168 @@
     }
 
     /* =====================
+       PROJECT MODAL
+    ===================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px) saturate(140%);
+      -webkit-backdrop-filter: blur(8px) saturate(140%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-glass {
+      width: min(520px, 92vw);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(48px) saturate(180%);
+      -webkit-backdrop-filter: blur(48px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      padding: 48px 44px 44px;
+      position: relative;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-overlay.open .modal-glass {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover { color: #fff; }
+
+    .modal-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      color: rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 36px;
+      line-height: 1.1;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .form-field label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.35);
+      text-transform: uppercase;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      padding: 10px 0;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      resize: none;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(255, 255, 255, 0.2); }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-bottom-color: rgba(255, 255, 255, 0.5); }
+
+    .form-field select option { background: #111; color: #fff; }
+
+    .form-submit {
+      margin-top: 8px;
+      width: 100%;
+      padding: 15px 20px;
+      background: #e0512a;
+      border: none;
+      color: #fff;
+      font-family: inherit;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+
+    .form-submit:hover { background: #c94520; }
+
+    .phone-wrap {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      transition: border-color 0.2s;
+    }
+
+    .phone-wrap:focus-within { border-bottom-color: rgba(255, 255, 255, 0.5); }
+
+    .phone-code {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+      padding: 10px 8px 10px 0;
+      flex-shrink: 0;
+      min-width: 38px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .phone-wrap input {
+      border-bottom: none;
+      padding-left: 4px;
+    }
+
+    /* =====================
        PORTFOLIO — Netflix style
     ===================== */
 
@@ -643,7 +805,7 @@
           <div>
             <div class="sidebar__divider"></div>
             <p class="sidebar__cta-label">Ready to make something?</p>
-            <a href="mailto:hello@brandmotion.com" class="btn-hello">Start a Project</a>
+            <button type="button" class="btn-hello" id="open-modal">Start a Project</button>
           </div>
         </aside>
 
@@ -934,6 +1096,110 @@
 
   </div>
 
+  <!-- Project enquiry modal -->
+  <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-label="Start a Project">
+    <div class="modal-glass">
+      <button class="modal-close" id="close-modal" aria-label="Close">&#x2715;</button>
+
+      <p class="modal-eyebrow">BrandMotion Studios</p>
+      <h2 class="modal-title">Let's make something.</h2>
+
+      <form id="project-form" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" placeholder="you@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-country">Country</label>
+            <select id="f-country" name="country">
+              <option value="Ghana" data-code="+233">Ghana</option>
+              <option value="Nigeria" data-code="+234">Nigeria</option>
+              <option value="South Africa" data-code="+27">South Africa</option>
+              <option value="Kenya" data-code="+254">Kenya</option>
+              <option value="Ethiopia" data-code="+251">Ethiopia</option>
+              <option value="Tanzania" data-code="+255">Tanzania</option>
+              <option value="Uganda" data-code="+256">Uganda</option>
+              <option value="Senegal" data-code="+221">Senegal</option>
+              <option value="Ivory Coast" data-code="+225">Ivory Coast</option>
+              <option value="Cameroon" data-code="+237">Cameroon</option>
+              <option value="Egypt" data-code="+20">Egypt</option>
+              <option value="Morocco" data-code="+212">Morocco</option>
+              <option value="Algeria" data-code="+213">Algeria</option>
+              <option value="Tunisia" data-code="+216">Tunisia</option>
+              <option value="Angola" data-code="+244">Angola</option>
+              <option value="Zimbabwe" data-code="+263">Zimbabwe</option>
+              <option value="Zambia" data-code="+260">Zambia</option>
+              <option value="Rwanda" data-code="+250">Rwanda</option>
+              <option value="United Kingdom" data-code="+44">United Kingdom</option>
+              <option value="United States" data-code="+1">United States</option>
+              <option value="Canada" data-code="+1">Canada</option>
+              <option value="France" data-code="+33">France</option>
+              <option value="Germany" data-code="+49">Germany</option>
+              <option value="Netherlands" data-code="+31">Netherlands</option>
+              <option value="Belgium" data-code="+32">Belgium</option>
+              <option value="Spain" data-code="+34">Spain</option>
+              <option value="Italy" data-code="+39">Italy</option>
+              <option value="Switzerland" data-code="+41">Switzerland</option>
+              <option value="Sweden" data-code="+46">Sweden</option>
+              <option value="Norway" data-code="+47">Norway</option>
+              <option value="Denmark" data-code="+45">Denmark</option>
+              <option value="Portugal" data-code="+351">Portugal</option>
+              <option value="Australia" data-code="+61">Australia</option>
+              <option value="New Zealand" data-code="+64">New Zealand</option>
+              <option value="UAE" data-code="+971">UAE</option>
+              <option value="Saudi Arabia" data-code="+966">Saudi Arabia</option>
+              <option value="Qatar" data-code="+974">Qatar</option>
+              <option value="Kuwait" data-code="+965">Kuwait</option>
+              <option value="India" data-code="+91">India</option>
+              <option value="China" data-code="+86">China</option>
+              <option value="Japan" data-code="+81">Japan</option>
+              <option value="Singapore" data-code="+65">Singapore</option>
+              <option value="Brazil" data-code="+55">Brazil</option>
+              <option value="Mexico" data-code="+52">Mexico</option>
+              <option value="Colombia" data-code="+57">Colombia</option>
+              <option value="Argentina" data-code="+54">Argentina</option>
+              <option value="Other" data-code="">Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="f-phone">Phone</label>
+            <div class="phone-wrap">
+              <span class="phone-code" id="phone-code">+233</span>
+              <input type="tel" id="f-phone" name="phone" placeholder="Phone number" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="f-type">Project Type</label>
+          <select id="f-type" name="type">
+            <option>Brand Film</option>
+            <option>Fashion Campaign</option>
+            <option>Documentary</option>
+            <option>Music Video</option>
+            <option>Commercial</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="f-message">Tell us about your project</label>
+          <textarea id="f-message" name="message" rows="3" placeholder="Brief description, timeline, budget..." required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send</button>
+      </form>
+    </div>
+  </div>
+
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -964,7 +1230,7 @@
 
     heroTl
       .from('.hero-nav',         { y: -48, opacity: 0, duration: 0.85 })
-      .from('.hero__image img',  { opacity: 0, scale: 1.06, duration: 1.5, ease: 'power2.out' }, '-=0.55')
+      .from('.hero-reel.active', { opacity: 0, duration: 1.5, ease: 'power2.out' }, '-=0.55')
       .from('.hero__tagline',    { y: 22, opacity: 0, duration: 0.65 }, '-=0.75')
       .from('.hero__headline',   { y: 44, opacity: 0, duration: 0.95 }, '-=0.5')
       .from('.sidebar__label',   { y: 18, opacity: 0, duration: 0.6 }, '-=0.75')
@@ -1016,6 +1282,90 @@
     })
       .from('.footer__bottom', { y: 22, opacity: 0, duration: 0.7 })
       .from('.footer__built', { opacity: 0, duration: 0.6 }, '-=0.25');
+
+    // ── PROJECT MODAL ──────────────────────────────────────────
+    const modal    = document.getElementById('project-modal');
+    const openBtn  = document.getElementById('open-modal');
+    const closeBtn = document.getElementById('close-modal');
+    const form     = document.getElementById('project-form');
+    const countrySelect = document.getElementById('f-country');
+    const phoneCodeEl   = document.getElementById('phone-code');
+
+    // Sync country → phone code
+    countrySelect.addEventListener('change', function () {
+      const opt = countrySelect.options[countrySelect.selectedIndex];
+      phoneCodeEl.textContent = opt.dataset.code || '';
+    });
+
+    function openModal() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // FormSubmit — emails the enquiry to brandmotionstudios5496@gmail.com.
+    // First-ever submission triggers a confirmation email from formsubmit.co
+    // to that inbox — click the link in it once to activate delivery.
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name    = form.name.value.trim();
+      const email   = form.email.value.trim();
+      const country = form.country.value;
+      const code    = phoneCodeEl.textContent;
+      const phone   = form.phone.value.trim();
+      const type    = form.type.value;
+      const message = form.message.value.trim();
+
+      if (!name || !email || !message) return;
+
+      const submitBtn = form.querySelector('.form-submit');
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      fetch('https://formsubmit.co/ajax/brandmotionstudios5496@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `New Project Enquiry — ${name}`,
+          Name: name,
+          Email: email,
+          Phone: phone ? `${code} ${phone}` : '—',
+          Country: country,
+          'Project Type': type,
+          Brief: message,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Send failed');
+          submitBtn.textContent = 'Sent ✓';
+          setTimeout(() => {
+            closeModal();
+            form.reset();
+            phoneCodeEl.textContent = '+233';
+            submitBtn.textContent = 'Send';
+            submitBtn.disabled = false;
+          }, 1200);
+        })
+        .catch(() => {
+          submitBtn.textContent = 'Failed — try again';
+          submitBtn.disabled = false;
+        });
+    });
   </script>
 
 </body>
