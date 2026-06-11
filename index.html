@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BrandMotion Studios</title>
+
+  <!-- Speed up Vimeo player + CDN handshakes -->
+  <link rel="preconnect" href="https://player.vimeo.com" />
+  <link rel="preconnect" href="https://f.vimeocdn.com" />
+  <link rel="preconnect" href="https://i.vimeocdn.com" />
+  <link rel="dns-prefetch" href="https://vod-adaptive.akamaized.net" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -732,6 +738,109 @@
       color: rgba(255, 255, 255, 0.15);
       letter-spacing: 0.08em;
     }
+
+    /* =====================
+       MOBILE
+    ===================== */
+
+    /* Dynamic viewport height — avoids jumpiness from mobile browser chrome */
+    @supports (height: 100dvh) {
+      .page    { height: 100dvh; }
+      .section { height: 100dvh; }
+    }
+
+    @media (max-width: 768px) {
+
+      /* ── Hero ── */
+      .hero-nav { padding: 0 20px; height: 56px; }
+
+      .hero-nav__brand { font-size: 10px; letter-spacing: 0.2em; }
+
+      .hero-body { flex-direction: column; }
+
+      .hero__image { flex: 1; min-height: 0; }
+
+      .hero__text { left: 20px; bottom: 28px; right: 20px; }
+
+      .hero__headline { font-size: clamp(36px, 11vw, 56px); }
+
+      .scroll-indicator { right: 16px; bottom: 28px; }
+      .scroll-indicator__label { display: none; }
+      .scroll-indicator__mouse { width: 22px; height: 36px; }
+
+      .sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 22px 20px 26px;
+        gap: 18px;
+        flex-shrink: 0;
+      }
+
+      .sidebar__label { margin-bottom: 8px; }
+
+      .sidebar__bio { font-size: 13px; line-height: 1.6; }
+
+      .sidebar__divider { display: none; }
+
+      .sidebar__cta-label { margin-bottom: 10px; }
+
+      .btn-hello { padding: 14px 18px; }
+
+      /* ── Portfolio ── */
+      .pf-top { padding: 14px 20px; }
+
+      .pf-dot { width: 12px; }
+      .pf-dot.active { width: 24px; }
+
+      .pf-content { padding: 0 20px 30px; }
+
+      .pf-content__right { display: none; }
+
+      .pf-title {
+        font-size: clamp(38px, 11vw, 64px);
+        margin-bottom: 14px;
+      }
+
+      .pf-desc {
+        font-size: 12.5px;
+        line-height: 1.65;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .pf-actions { gap: 14px; flex-wrap: wrap; }
+
+      .pf-play { padding: 11px 24px; }
+
+      /* Hover Ken Burns doesn't apply on touch — keep bg still */
+      .pf-section:hover .pf-bg { transform: none; }
+
+      /* ── Footer ── */
+      .footer__bottom { gap: 16px; flex-wrap: wrap; justify-content: center; padding: 0 20px; }
+
+      /* ── Modal ── */
+      .modal-glass {
+        padding: 36px 24px 32px;
+        max-height: 90dvh;
+        overflow-y: auto;
+      }
+
+      .modal-title { font-size: 22px; margin-bottom: 26px; }
+
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+
+      .form-field { margin-bottom: 16px; }
+
+      /* 16px stops iOS Safari from auto-zooming on focus */
+      .form-field input,
+      .form-field select,
+      .form-field textarea { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -765,23 +874,23 @@
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <iframe class="hero-reel"
-            src="https://player.vimeo.com/video/1123537845?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+            data-src="https://player.vimeo.com/video/1123537845?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <iframe class="hero-reel"
-            src="https://player.vimeo.com/video/1164509809?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+            data-src="https://player.vimeo.com/video/1164509809?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <iframe class="hero-reel"
-            src="https://player.vimeo.com/video/1091937617?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+            data-src="https://player.vimeo.com/video/1091937617?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <iframe class="hero-reel"
-            src="https://player.vimeo.com/video/834062800?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+            data-src="https://player.vimeo.com/video/834062800?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <iframe class="hero-reel"
-            src="https://player.vimeo.com/video/1200286016?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
+            data-src="https://player.vimeo.com/video/1200286016?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -819,7 +928,7 @@
     <section class="section pf-section" id="portfolio">
       <!-- Vimeo background — background=1 enables silent autoplay + loop -->
       <div class="pf-video-wrap">
-        <iframe
+        <iframe loading="lazy"
           src="https://player.vimeo.com/video/1200279135?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -850,7 +959,7 @@
           </div>
         </div>
         <div class="pf-content__right">
-          <div class="pf-next">Next<strong>Guinness Africa</strong></div>
+          <div class="pf-next">Next<strong>Chocolate Clothing</strong></div>
           <div class="pf-mouse"></div>
         </div>
       </div>
@@ -861,7 +970,7 @@
     ══════════════════════════ -->
     <section class="section pf-section">
       <div class="pf-video-wrap">
-        <iframe
+        <iframe loading="lazy"
           src="https://player.vimeo.com/video/1123537845?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -892,7 +1001,7 @@
           </div>
         </div>
         <div class="pf-content__right">
-          <div class="pf-next">Next<strong>Vogue</strong></div>
+          <div class="pf-next">Next<strong>MarvinBrooks Music</strong></div>
           <div class="pf-mouse"></div>
         </div>
       </div>
@@ -903,7 +1012,7 @@
     ══════════════════════════ -->
     <section class="section pf-section">
       <div class="pf-video-wrap">
-        <iframe
+        <iframe loading="lazy"
           src="https://player.vimeo.com/video/1164509809?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -934,7 +1043,7 @@
           </div>
         </div>
         <div class="pf-content__right">
-          <div class="pf-next">Next<strong>United Airlines</strong></div>
+          <div class="pf-next">Next<strong>Here We Are x Climate Impact Partners</strong></div>
           <div class="pf-mouse"></div>
         </div>
       </div>
@@ -945,7 +1054,7 @@
     ══════════════════════════ -->
     <section class="section pf-section">
       <div class="pf-video-wrap">
-        <iframe
+        <iframe loading="lazy"
           src="https://player.vimeo.com/video/1091937617?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -976,7 +1085,7 @@
           </div>
         </div>
         <div class="pf-content__right">
-          <div class="pf-next">Next<strong>Michaela Coel</strong></div>
+          <div class="pf-next">Next<strong>United Airlines</strong></div>
           <div class="pf-mouse"></div>
         </div>
       </div>
@@ -987,7 +1096,7 @@
     ══════════════════════════ -->
     <section class="section pf-section">
       <div class="pf-video-wrap">
-        <iframe
+        <iframe loading="lazy"
           src="https://player.vimeo.com/video/834062800?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -1018,7 +1127,7 @@
           </div>
         </div>
         <div class="pf-content__right">
-          <div class="pf-next">Next<strong>Debonair Afrik</strong></div>
+          <div class="pf-next">Next<strong>Aura Collection</strong></div>
           <div class="pf-mouse"></div>
         </div>
       </div>
@@ -1029,7 +1138,7 @@
     ══════════════════════════ -->
     <section class="section pf-section">
       <div class="pf-video-wrap">
-        <iframe
+        <iframe loading="lazy"
           src="https://player.vimeo.com/video/1200286016?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -1209,12 +1318,28 @@
 
   <script>
     // ── SHOWREEL CYCLE ─────────────────────────────────────────
+    // Only the first reel loads with the page; each later reel's src is
+    // attached one cycle ahead so it's buffered before it fades in.
     (function () {
       const reels = document.querySelectorAll('.hero-reel');
       let current = 0;
+
+      function ensureLoaded(i) {
+        const r = reels[i];
+        if (r.dataset.src && !r.getAttribute('src')) {
+          r.src = r.dataset.src;
+          delete r.dataset.src;
+        }
+      }
+
+      // Buffer reel #2 once the page has finished loading
+      window.addEventListener('load', () => ensureLoaded(1));
+
       setInterval(() => {
         reels[current].classList.remove('active');
         current = (current + 1) % reels.length;
+        ensureLoaded(current);
+        ensureLoaded((current + 1) % reels.length); // preload the one after
         reels[current].classList.add('active');
       }, 6000);
     })();
