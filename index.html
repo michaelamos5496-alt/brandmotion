@@ -715,6 +715,108 @@
     }
 
     /* =====================
+       CONTACT
+    ===================== */
+    .contact-section {
+      background: #000;
+      display: flex;
+      position: relative;
+    }
+
+    .contact-left {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+
+    .contact-left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .contact-left::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.82) 8%, transparent 55%),
+        linear-gradient(to right, transparent 60%, rgba(0,0,0,0.5) 100%);
+      pointer-events: none;
+    }
+
+    .contact-home {
+      position: absolute;
+      left: 44px;
+      top: 47%;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-home:hover { color: #fff; }
+
+    .contact-home__arrow { color: #FF4B2B; font-size: 16px; }
+
+    .contact-title {
+      position: absolute;
+      left: 44px;
+      bottom: 64px;
+      z-index: 10;
+      font-size: clamp(52px, 6vw, 92px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: #fff;
+    }
+
+    .contact-right {
+      width: 42%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 64px 72px;
+      border-left: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .contact-block__label {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      letter-spacing: 0.32em;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 20px;
+    }
+
+    .contact-block__line {
+      display: block;
+      font-size: 15px;
+      line-height: 2.2;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+    }
+
+    .contact-block__link { transition: color 0.2s; }
+
+    .contact-block__link:hover { color: #FF4B2B; }
+
+    /* =====================
        FOOTER
     ===================== */
     .footer-section {
@@ -874,6 +976,33 @@
       /* Hover Ken Burns doesn't apply on touch — keep bg still */
       .pf-section:hover .pf-bg { transform: none; }
 
+      /* ── Contact ── */
+      .contact-section { flex-direction: column; }
+
+      .contact-left { flex: 1; min-height: 0; }
+
+      .contact-home { left: 20px; top: 24px; }
+
+      .contact-title {
+        left: 20px;
+        bottom: 28px;
+        font-size: clamp(38px, 11vw, 56px);
+      }
+
+      .contact-right {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 28px 20px 32px;
+        flex-shrink: 0;
+      }
+
+      .contact-info { gap: 28px; }
+
+      .contact-block__label { margin-bottom: 10px; }
+
+      .contact-block__line { font-size: 14px; line-height: 1.9; }
+
       /* ── Footer ── */
       .footer__bottom { gap: 16px; flex-wrap: wrap; justify-content: center; padding: 0 20px; }
 
@@ -920,7 +1049,7 @@
         <nav class="nav-drawer" id="nav-drawer" aria-label="Main menu">
           <a href="#hero" class="nav-drawer__link">Home</a>
           <a href="#portfolio" class="nav-drawer__link">Portfolio</a>
-          <a href="#" class="nav-drawer__link" id="nav-contact">Contact</a>
+          <a href="#contact" class="nav-drawer__link">Contact</a>
         </nav>
       </header>
 
@@ -974,7 +1103,7 @@
           <div>
             <div class="sidebar__divider"></div>
             <p class="sidebar__cta-label">Ready to make something?</p>
-            <button type="button" class="btn-hello" id="open-modal">Start a Project</button>
+            <button type="button" class="btn-hello js-open-modal">Start a Project</button>
           </div>
         </aside>
 
@@ -1236,7 +1365,40 @@
     </section>
 
     <!-- ══════════════════════════
-         SECTION 8 — FOOTER
+         SECTION 8 — CONTACT
+    ══════════════════════════ -->
+    <section class="section contact-section" id="contact">
+
+      <!-- Left: image + headline -->
+      <div class="contact-left">
+        <img src="assets/contact.jpg" alt="BrandMotion Studios — behind the camera" />
+        <a href="#hero" class="contact-home"><span class="contact-home__arrow">&#8592;</span> Home</a>
+        <h2 class="contact-title">Get in touch.</h2>
+      </div>
+
+      <!-- Right: contact details -->
+      <aside class="contact-right">
+
+        <div class="contact-info">
+          <div class="contact-block">
+            <p class="contact-block__label">Reach out on</p>
+            <a href="mailto:brandmotionstudios5496@gmail.com" class="contact-block__line contact-block__link">brandmotionstudios5496@gmail.com</a>
+            <a href="https://wa.me/233541479680" target="_blank" rel="noopener" class="contact-block__line contact-block__link">+233 54 147 9680</a>
+          </div>
+
+          <div class="contact-block">
+            <div class="sidebar__divider"></div>
+            <p class="sidebar__cta-label">Ready to make something?</p>
+            <button type="button" class="btn-hello js-open-modal">Start a Project</button>
+          </div>
+        </div>
+
+      </aside>
+
+    </section>
+
+    <!-- ══════════════════════════
+         SECTION 9 — FOOTER
     ══════════════════════════ -->
     <section class="section footer-section">
 
@@ -1464,6 +1626,15 @@
           }, '-=0.7');
     });
 
+    // ── CONTACT ────────────────────────────────────────────────
+    gsap.timeline({
+      scrollTrigger: { trigger: '.contact-section', start: 'top 88%' }
+    })
+      .from('.contact-left img', { scale: 1.08, opacity: 0, duration: 1.4, ease: 'power2.out' })
+      .from('.contact-home',  { x: -18, opacity: 0, duration: 0.6 }, '-=1.0')
+      .from('.contact-title', { y: 40, opacity: 0, duration: 0.9, ease: 'power3.out' }, '-=0.7')
+      .from('.contact-block', { y: 24, opacity: 0, duration: 0.7, stagger: 0.15 }, '-=0.6');
+
     // ── FOOTER ─────────────────────────────────────────────────
     gsap.timeline({
       scrollTrigger: { trigger: '.footer-section', start: 'top 88%' }
@@ -1473,7 +1644,6 @@
 
     // ── PROJECT MODAL ──────────────────────────────────────────
     const modal    = document.getElementById('project-modal');
-    const openBtn  = document.getElementById('open-modal');
     const closeBtn = document.getElementById('close-modal');
     const form     = document.getElementById('project-form');
     const countrySelect = document.getElementById('f-country');
@@ -1495,13 +1665,14 @@
       document.body.style.overflow = '';
     }
 
-    openBtn.addEventListener('click', openModal);
+    document.querySelectorAll('.js-open-modal').forEach((btn) => {
+      btn.addEventListener('click', openModal);
+    });
     closeBtn.addEventListener('click', closeModal);
 
     // ── NAV MENU ───────────────────────────────────────────────
     const menuBtn  = document.getElementById('nav-menu');
     const drawer   = document.getElementById('nav-drawer');
-    const navContact = document.getElementById('nav-contact');
 
     function closeMenu() {
       menuBtn.classList.remove('open');
@@ -1516,16 +1687,9 @@
       menuBtn.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // Home / Portfolio links: let the anchor scroll, just close the menu
+    // Menu links: let the anchor scroll, just close the menu
     drawer.querySelectorAll('.nav-drawer__link').forEach((link) => {
       link.addEventListener('click', () => closeMenu());
-    });
-
-    // Contact opens the project form
-    navContact.addEventListener('click', function (e) {
-      e.preventDefault();
-      closeMenu();
-      openModal();
     });
 
     // Close when clicking elsewhere or pressing Escape
