@@ -75,6 +75,56 @@
       width: 22px;
       height: 1.5px;
       background: rgba(255, 255, 255, 0.85);
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+
+    /* Hamburger → X */
+    .nav-menu.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-menu.open span:nth-child(2) { opacity: 0; }
+    .nav-menu.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Dropdown menu ── */
+    .nav-drawer {
+      position: absolute;
+      top: 62px;
+      left: 0;
+      min-width: 240px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(36px) saturate(180%);
+      -webkit-backdrop-filter: blur(36px) saturate(180%);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.28s ease;
+      z-index: 40;
+    }
+
+    .nav-drawer.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .nav-drawer__link {
+      padding: 16px 44px;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.2s, background 0.2s, padding-left 0.25s;
+    }
+
+    .nav-drawer__link:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      padding-left: 52px;
     }
 
     .hero-nav__brand {
@@ -756,6 +806,10 @@
 
       .hero-nav__brand { font-size: 10px; letter-spacing: 0.2em; }
 
+      .nav-drawer { top: 56px; min-width: 200px; }
+      .nav-drawer__link { padding: 14px 32px; }
+      .nav-drawer__link:hover { padding-left: 40px; }
+
       .hero-body { flex-direction: column; }
 
       .hero__image { flex: 1; min-height: 0; }
@@ -854,7 +908,7 @@
 
       <!-- Full-width top nav -->
       <header class="hero-nav">
-        <button class="nav-menu" aria-label="Menu">
+        <button class="nav-menu" id="nav-menu" aria-label="Menu" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
@@ -862,6 +916,12 @@
 
         <span class="hero-nav__brand">BrandMotion Studios</span>
 
+        <!-- Dropdown menu -->
+        <nav class="nav-drawer" id="nav-drawer" aria-label="Main menu">
+          <a href="#hero" class="nav-drawer__link">Home</a>
+          <a href="#portfolio" class="nav-drawer__link">Portfolio</a>
+          <a href="#" class="nav-drawer__link" id="nav-contact">Contact</a>
+        </nav>
       </header>
 
       <!-- Portrait + sidebar -->
@@ -1438,12 +1498,47 @@
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
 
+    // ── NAV MENU ───────────────────────────────────────────────
+    const menuBtn  = document.getElementById('nav-menu');
+    const drawer   = document.getElementById('nav-drawer');
+    const navContact = document.getElementById('nav-contact');
+
+    function closeMenu() {
+      menuBtn.classList.remove('open');
+      drawer.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    menuBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const isOpen = drawer.classList.toggle('open');
+      menuBtn.classList.toggle('open', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Home / Portfolio links: let the anchor scroll, just close the menu
+    drawer.querySelectorAll('.nav-drawer__link').forEach((link) => {
+      link.addEventListener('click', () => closeMenu());
+    });
+
+    // Contact opens the project form
+    navContact.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeMenu();
+      openModal();
+    });
+
+    // Close when clicking elsewhere or pressing Escape
+    document.addEventListener('click', function (e) {
+      if (!drawer.contains(e.target) && !menuBtn.contains(e.target)) closeMenu();
+    });
+
     modal.addEventListener('click', function (e) {
       if (e.target === modal) closeModal();
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Escape') { closeModal(); closeMenu(); }
     });
 
     // FormSubmit — emails the enquiry to brandmotionstudios5496@gmail.com.
