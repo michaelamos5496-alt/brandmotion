@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.brandmotionstudios.com</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.brandmotionstudios.com/</loc>
+    <lastmod>2026-08-29</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.brandmotionstudios.com/#portfolio</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.brandmotionstudios.com/work/nyasa-ware/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.brandmotionstudios.com/#about</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.brandmotionstudios.com/work/chocolate-clothing/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.brandmotionstudios.com/#contact</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.brandmotionstudios.com/work/marvinbrooks-music/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.brandmotionstudios.com/work/here-we-are-climate-impact/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.brandmotionstudios.com/work/united-airlines/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.brandmotionstudios.com/work/aura-collection/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

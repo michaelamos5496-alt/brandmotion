@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BrandMotion Studios</title>
+  <title>BrandMotion Studios | International Film Studio — Accra, Ghana</title>
+  <meta name="description" content="BrandMotion Studios is an international film studio based in Accra, Ghana, working across editorial, documentary, brand filmmaking and fashion campaigns — credits include Vogue, United Airlines and Tree Aid." />
+  <link rel="canonical" href="https://www.brandmotionstudios.com/" />
 
   <!-- Speed up Vimeo player + CDN handshakes -->
   <link rel="preconnect" href="https://player.vimeo.com" />
@@ -199,6 +201,14 @@
       line-height: 1;
       letter-spacing: -0.025em;
       color: #fff;
+    }
+
+    .hero__credits {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 16px;
+      font-weight: 400;
     }
 
     /* Scroll indicator */
@@ -459,6 +469,13 @@
 
     .form-submit:hover { background: #c94520; }
 
+    .form-note {
+      margin-top: 12px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.35);
+      text-align: center;
+    }
+
     .phone-wrap {
       display: flex;
       align-items: center;
@@ -521,6 +538,17 @@
       width: max(100%, calc(100vh * 16 / 9));
       height: max(100%, calc(100vw * 9 / 16));
       border: none;
+    }
+
+    /* Static poster shown until the section scrolls into view and the
+       real iframe is mounted on top of it (see PORTFOLIO VIDEO LAZY-LOAD) */
+    .pf-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* Cinematic gradient — heavy bottom, left fade */
@@ -667,6 +695,56 @@
     }
 
     .pf-url:hover { color: rgba(255, 255, 255, 0.8); }
+
+    /* Secondary, lower-commitment capture — visually subordinate to .pf-play/.btn-hello */
+    .pf-reel-form {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .pf-reel-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.35);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pf-reel-input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-family: inherit;
+      font-size: 12px;
+      padding: 5px 0;
+      width: 170px;
+      max-width: 40vw;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .pf-reel-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+    .pf-reel-input:focus { border-bottom-color: rgba(255, 255, 255, 0.5); }
+
+    .pf-reel-submit {
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      color: rgba(255, 255, 255, 0.55);
+      font-family: inherit;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 0;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .pf-reel-submit:hover { color: #fff; border-color: rgba(255, 255, 255, 0.6); }
 
     /* Right: next project */
     .pf-content__right {
@@ -920,6 +998,8 @@
 
       .hero__headline { font-size: clamp(36px, 11vw, 56px); }
 
+      .hero__credits { font-size: 12px; margin-top: 12px; }
+
       .scroll-indicator { right: 16px; bottom: 28px; }
       .scroll-indicator__label { display: none; }
       .scroll-indicator__mouse { width: 22px; height: 36px; }
@@ -972,6 +1052,10 @@
       .pf-actions { gap: 14px; flex-wrap: wrap; }
 
       .pf-play { padding: 11px 24px; }
+
+      .pf-reel-form { margin-top: 16px; }
+
+      .pf-reel-input { width: 140px; max-width: 55vw; }
 
       /* Hover Ken Burns doesn't apply on touch — keep bg still */
       .pf-section:hover .pf-bg { transform: none; }
@@ -1086,6 +1170,7 @@
           <div class="hero__text">
             <p class="hero__tagline">International film studio</p>
             <h1 class="hero__headline">Africa, in full frame.</h1>
+            <p class="hero__credits">Credits include Vogue, United Airlines, and Tree Aid</p>
           </div>
 
           <a class="scroll-indicator" href="#portfolio" aria-label="Scroll to portfolio">
@@ -1116,13 +1201,8 @@
     ══════════════════════════ -->
     <section class="section pf-section" id="portfolio">
       <!-- Vimeo background — background=1 enables silent autoplay + loop -->
-      <div class="pf-video-wrap">
-        <iframe loading="lazy"
-          src="https://player.vimeo.com/video/1200279135?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+      <div class="pf-video-wrap" data-vimeo-id="1200279135">
+        <img class="pf-poster" src="https://i.vimeocdn.com/video/2167324271-dad910f9599e687b6764c17e79d85b5ed9231ce1053b0ab1511648e372a3f8b0-d_1280?region=us" alt="" loading="lazy" />
       </div>
       <div class="pf-overlay"></div>
 
@@ -1145,7 +1225,20 @@
               Play
             </a>
             <a href="https://vimeo.com/1200279135" target="_blank" rel="noopener" class="pf-url">vimeo.com ↗</a>
+            <a href="/work/nyasa-ware/" class="pf-url">View project →</a>
           </div>
+
+          <!-- Secondary, lower-commitment capture — reuses the FormSubmit
+               pattern from the project inquiry form (native POST, same
+               destination inbox), redirecting to the portfolio on success. -->
+          <form class="pf-reel-form" action="https://formsubmit.co/brandmotionstudios5496@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Reel Request" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://www.brandmotionstudios.com/#portfolio" />
+            <span class="pf-reel-label">Not ready yet?</span>
+            <input type="email" name="email" class="pf-reel-input" placeholder="Your email" required />
+            <button type="submit" class="pf-reel-submit">Get our reel</button>
+          </form>
         </div>
         <div class="pf-content__right">
           <div class="pf-next">Next<strong>Chocolate Clothing</strong></div>
@@ -1158,13 +1251,8 @@
          SECTION 3 — PORTFOLIO 02
     ══════════════════════════ -->
     <section class="section pf-section">
-      <div class="pf-video-wrap">
-        <iframe loading="lazy"
-          src="https://player.vimeo.com/video/1123537845?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+      <div class="pf-video-wrap" data-vimeo-id="1123537845">
+        <img class="pf-poster" src="https://i.vimeocdn.com/video/2065185158-10b9be97da4516cbfe6d1903b32e1813dda2b0d3c2a784ff59a39a1917761332-d_1280?region=us" alt="" loading="lazy" />
       </div>
       <div class="pf-overlay"></div>
 
@@ -1187,6 +1275,7 @@
               Play
             </a>
             <a href="https://vimeo.com/1123537845" target="_blank" rel="noopener" class="pf-url">vimeo.com ↗</a>
+            <a href="/work/chocolate-clothing/" class="pf-url">View project →</a>
           </div>
         </div>
         <div class="pf-content__right">
@@ -1200,13 +1289,8 @@
          SECTION 4 — PORTFOLIO 03
     ══════════════════════════ -->
     <section class="section pf-section">
-      <div class="pf-video-wrap">
-        <iframe loading="lazy"
-          src="https://player.vimeo.com/video/1164509809?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+      <div class="pf-video-wrap" data-vimeo-id="1164509809">
+        <img class="pf-poster" src="https://i.vimeocdn.com/video/2121177690-1c7875a6911cc1a136b82c0cc0e070c3efebdd0a8e3d11b92f514899db726859-d_1280?region=us" alt="" loading="lazy" />
       </div>
       <div class="pf-overlay"></div>
 
@@ -1229,6 +1313,7 @@
               Play
             </a>
             <a href="https://vimeo.com/1164509809" target="_blank" rel="noopener" class="pf-url">vimeo.com ↗</a>
+            <a href="/work/marvinbrooks-music/" class="pf-url">View project →</a>
           </div>
         </div>
         <div class="pf-content__right">
@@ -1242,13 +1327,8 @@
          SECTION 5 — PORTFOLIO 04
     ══════════════════════════ -->
     <section class="section pf-section">
-      <div class="pf-video-wrap">
-        <iframe loading="lazy"
-          src="https://player.vimeo.com/video/1091937617?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+      <div class="pf-video-wrap" data-vimeo-id="1091937617">
+        <img class="pf-poster" src="https://i.vimeocdn.com/video/2024906739-175da76d12f6503cd3afc34c9e335d4f3b8b5a194cb89b53d82a541dc75e94f6-d_1280?region=us" alt="" loading="lazy" />
       </div>
       <div class="pf-overlay"></div>
 
@@ -1271,6 +1351,7 @@
               Play
             </a>
             <a href="https://vimeo.com/1091937617" target="_blank" rel="noopener" class="pf-url">vimeo.com ↗</a>
+            <a href="/work/here-we-are-climate-impact/" class="pf-url">View project →</a>
           </div>
         </div>
         <div class="pf-content__right">
@@ -1284,13 +1365,8 @@
          SECTION 6 — PORTFOLIO 05
     ══════════════════════════ -->
     <section class="section pf-section">
-      <div class="pf-video-wrap">
-        <iframe loading="lazy"
-          src="https://player.vimeo.com/video/834062800?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+      <div class="pf-video-wrap" data-vimeo-id="834062800">
+        <img class="pf-poster" src="https://i.vimeocdn.com/video/1680756397-3d80367cf01beadd61bae78049c30628104f807a12375ccacaa3635406e05657-d_1280?region=us" alt="" loading="lazy" />
       </div>
       <div class="pf-overlay"></div>
 
@@ -1313,6 +1389,7 @@
               Play
             </a>
             <a href="https://vimeo.com/834062800" target="_blank" rel="noopener" class="pf-url">vimeo.com ↗</a>
+            <a href="/work/united-airlines/" class="pf-url">View project →</a>
           </div>
         </div>
         <div class="pf-content__right">
@@ -1326,13 +1403,8 @@
          SECTION 7 — PORTFOLIO 06
     ══════════════════════════ -->
     <section class="section pf-section">
-      <div class="pf-video-wrap">
-        <iframe loading="lazy"
-          src="https://player.vimeo.com/video/1200286016?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+      <div class="pf-video-wrap" data-vimeo-id="1200286016">
+        <img class="pf-poster" src="https://i.vimeocdn.com/video/2167332754-684c448acdec0f60d0a13d330adc0dd4c62b07be9be47f0fde7453d8e94aa282-d_1280?region=us" alt="" loading="lazy" />
       </div>
       <div class="pf-overlay"></div>
 
@@ -1355,6 +1427,7 @@
               Play
             </a>
             <a href="https://vimeo.com/1200286016" target="_blank" rel="noopener" class="pf-url">vimeo.com ↗</a>
+            <a href="/work/aura-collection/" class="pf-url">View project →</a>
           </div>
         </div>
         <div class="pf-content__right">
@@ -1380,6 +1453,11 @@
       <aside class="contact-right">
 
         <div class="contact-info">
+          <div class="contact-block" id="form-sent-msg" hidden>
+            <p class="contact-block__label">Message sent</p>
+            <p class="contact-block__line">Thanks — we've got your project details and will reply within 24–48 hours.</p>
+          </div>
+
           <div class="contact-block">
             <p class="contact-block__label">Reach out on</p>
             <a href="mailto:brandmotionstudios5496@gmail.com" class="contact-block__line contact-block__link">brandmotionstudios5496@gmail.com</a>
@@ -1438,11 +1516,23 @@
       <p class="modal-eyebrow">BrandMotion Studios</p>
       <h2 class="modal-title">Let's make something.</h2>
 
-      <form id="project-form" novalidate>
+      <form id="project-form" novalidate
+        action="https://formsubmit.co/brandmotionstudios5496@gmail.com" method="POST">
+
+        <!-- FormSubmit config — autoresponse requires a real (non-AJAX) POST,
+             so this form submits natively and FormSubmit redirects back via _next. -->
+        <input type="hidden" name="_subject" id="f-subject" value="New Project Enquiry" />
+        <input type="hidden" name="_replyto" id="f-replyto" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://www.brandmotionstudios.com/?sent=project#contact" />
+        <input type="hidden" name="_autoresponse"
+          value="Thanks for reaching out to BrandMotion Studios — we've received your project details and will get back to you within 24-48 hours." />
+        <input type="hidden" name="Phone" id="f-phone-combined" />
+
         <div class="form-row">
           <div class="form-field">
             <label for="f-name">Name</label>
-            <input type="text" id="f-name" name="name" placeholder="Your name" required />
+            <input type="text" id="f-name" name="Name" placeholder="Your name" required />
           </div>
           <div class="form-field">
             <label for="f-email">Email</label>
@@ -1453,7 +1543,7 @@
         <div class="form-row">
           <div class="form-field">
             <label for="f-country">Country</label>
-            <select id="f-country" name="country">
+            <select id="f-country" name="Country">
               <option value="Ghana" data-code="+233">Ghana</option>
               <option value="Nigeria" data-code="+234">Nigeria</option>
               <option value="South Africa" data-code="+27">South Africa</option>
@@ -1507,14 +1597,14 @@
             <label for="f-phone">Phone</label>
             <div class="phone-wrap">
               <span class="phone-code" id="phone-code">+233</span>
-              <input type="tel" id="f-phone" name="phone" placeholder="Phone number" />
+              <input type="tel" id="f-phone" placeholder="Phone number" />
             </div>
           </div>
         </div>
 
         <div class="form-field">
           <label for="f-type">Project Type</label>
-          <select id="f-type" name="type">
+          <select id="f-type" name="Project Type">
             <option>Brand Film</option>
             <option>Fashion Campaign</option>
             <option>Documentary</option>
@@ -1526,10 +1616,11 @@
 
         <div class="form-field">
           <label for="f-message">Tell us about your project</label>
-          <textarea id="f-message" name="message" rows="3" placeholder="Brief description, timeline, budget..." required></textarea>
+          <textarea id="f-message" name="Brief" rows="3" placeholder="Brief description, timeline, budget..." required></textarea>
         </div>
 
         <button type="submit" class="form-submit">Send</button>
+        <p class="form-note">We reply within 24–48 hours.</p>
       </form>
     </div>
   </div>
@@ -1568,6 +1659,49 @@
   </script>
 
   <script>
+    // ── PORTFOLIO VIDEO LAZY-LOAD ──────────────────────────────
+    // Each portfolio slide starts as a static poster image (no network
+    // request beyond the thumbnail). The real Vimeo iframe is only created
+    // once its section is substantially in view — which, on this snap-scroll
+    // page, is the same moment the user has navigated to that slide — and is
+    // fully removed (not just hidden) the moment it scrolls back out, so it
+    // stops buffering/playing in the background.
+    (function () {
+      function buildIframe(vimeoId) {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479`;
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        return iframe;
+      }
+
+      const wraps = document.querySelectorAll('.pf-video-wrap[data-vimeo-id]');
+      if (!('IntersectionObserver' in window)) {
+        // Fallback: mount every video eagerly rather than showing static posters forever.
+        wraps.forEach((wrap) => wrap.appendChild(buildIframe(wrap.dataset.vimeoId)));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const wrap = entry.target;
+          const existing = wrap.querySelector('iframe');
+
+          if (entry.isIntersecting) {
+            if (!existing) wrap.appendChild(buildIframe(wrap.dataset.vimeoId));
+          } else if (existing) {
+            existing.remove(); // unmount entirely — stop the player, don't just hide it
+          }
+        });
+      }, { threshold: 0.5 });
+
+      wraps.forEach((wrap) => observer.observe(wrap));
+    })();
+  </script>
+
+  <script>
     gsap.registerPlugin(ScrollTrigger);
 
     const scroller = document.querySelector('.page');
@@ -1583,6 +1717,7 @@
       .from('.hero-reel.active', { opacity: 0, duration: 1.5, ease: 'power2.out' }, '-=0.55')
       .from('.hero__tagline',    { y: 22, opacity: 0, duration: 0.65 }, '-=0.75')
       .from('.hero__headline',   { y: 44, opacity: 0, duration: 0.95 }, '-=0.5')
+      .from('.hero__credits',    { y: 14, opacity: 0, duration: 0.6 }, '-=0.6')
       .from('.sidebar__label',   { y: 18, opacity: 0, duration: 0.6 }, '-=0.75')
       .from('.sidebar__bio',     { y: 18, opacity: 0, duration: 0.65 }, '-=0.45')
       .from('.sidebar__divider', { scaleX: 0, duration: 0.55, transformOrigin: 'left' }, '-=0.3')
@@ -1624,6 +1759,9 @@
         .from(section.querySelector('.pf-content__right'), {
             x: 22, opacity: 0, duration: 0.6,
           }, '-=0.7');
+
+      const reelForm = section.querySelector('.pf-reel-form');
+      if (reelForm) tl.from(reelForm, { y: 14, opacity: 0, duration: 0.5 }, '-=0.35');
     });
 
     // ── CONTACT ────────────────────────────────────────────────
@@ -1705,55 +1843,48 @@
       if (e.key === 'Escape') { closeModal(); closeMenu(); }
     });
 
-    // FormSubmit — emails the enquiry to brandmotionstudios5496@gmail.com.
-    // First-ever submission triggers a confirmation email from formsubmit.co
-    // to that inbox — click the link in it once to activate delivery.
+    // FormSubmit — emails the enquiry (with a reply-to of the submitter) to
+    // brandmotionstudios5496@gmail.com, and auto-confirms the submitter via
+    // _autoresponse. Both require a real (non-AJAX) POST, so the form submits
+    // natively and FormSubmit redirects back to the site via _next on success.
+    // First-ever submission triggers a one-time confirmation email from
+    // formsubmit.co to the studio inbox — click the link in it to activate.
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name    = form.name.value.trim();
-      const email   = form.email.value.trim();
-      const country = form.country.value;
-      const code    = phoneCodeEl.textContent;
-      const phone   = form.phone.value.trim();
-      const type    = form.type.value;
-      const message = form.message.value.trim();
+      const name    = document.getElementById('f-name').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
+      const message = document.getElementById('f-message').value.trim();
 
-      if (!name || !email || !message) return;
+      if (!name || !email || !message) {
+        e.preventDefault();
+        return;
+      }
+
+      const code  = phoneCodeEl.textContent;
+      const phone = document.getElementById('f-phone').value.trim();
+      document.getElementById('f-phone-combined').value = phone ? `${code} ${phone}` : '—';
+      document.getElementById('f-replyto').value = email;
+      document.getElementById('f-subject').value = `New Project Enquiry — ${name}`;
 
       const submitBtn = form.querySelector('.form-submit');
       submitBtn.textContent = 'Sending…';
       submitBtn.disabled = true;
-
-      fetch('https://formsubmit.co/ajax/brandmotionstudios5496@gmail.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: `New Project Enquiry — ${name}`,
-          Name: name,
-          Email: email,
-          Phone: phone ? `${code} ${phone}` : '—',
-          Country: country,
-          'Project Type': type,
-          Brief: message,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (String(data.success) !== 'true') throw new Error(data.message || 'Send failed');
-          submitBtn.textContent = 'Sent ✓';
-          setTimeout(() => {
-            closeModal();
-            form.reset();
-            phoneCodeEl.textContent = '+233';
-            submitBtn.textContent = 'Send';
-            submitBtn.disabled = false;
-          }, 1200);
-        })
-        .catch(() => {
-          submitBtn.textContent = 'Failed — try again';
-          submitBtn.disabled = false;
-        });
+      // Native submission continues from here — FormSubmit handles the redirect.
     });
+
+    // ── FORM-SENT CONFIRMATION BANNER ───────────────────────────
+    // Shown when FormSubmit's _next redirect lands back on the site.
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('sent') !== 'project') return;
+
+      const banner = document.getElementById('form-sent-msg');
+      if (banner) banner.hidden = false;
+
+      params.delete('sent');
+      const query = params.toString();
+      const cleanUrl = window.location.pathname + (query ? `?${query}` : '') + window.location.hash;
+      history.replaceState({}, '', cleanUrl);
+    })();
   </script>
 
 </body>
